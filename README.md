@@ -83,7 +83,6 @@ Things you may want to cover:
 |-------------|-----------|------------------------------------|
 |postal_code  |string     |null: false                         |
 |genre_id     |t.integer  |null: false                         |
-|prefecture   |string     |null: false                         |
 |city         |string     |null: false                         |
 |house_number |string     |null: false                         |
 |other        |string     |                                    |
