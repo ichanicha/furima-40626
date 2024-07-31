@@ -52,7 +52,7 @@ Things you may want to cover:
 |condition_id       |integer    |null: false                    |
 |shipping_charge_id |integer    |null: false                    |
 |prefecture_id      |integer    |null: false                    |
-|date_id            |integer    |null: false                    |
+|daily_id            |integer    |null: false                    |
 |price              |integer    |null: false                    |
 |user               |references |null: false, foreign_key: true |
 
