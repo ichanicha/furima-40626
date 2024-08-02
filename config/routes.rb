@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+  devise_for :users
   root 'items#index'
-  
+  resources :users, only: [:new]
+  resources :tweets, only: [:new, :create]
 end
