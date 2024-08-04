@@ -105,6 +105,27 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
+
+      it "family_nameは半角文字が含まれていると登録できない" do
+        @user.family_name = 'ｶﾉｳ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family name is invalid')
+      end
+      it "nameは半角文字が含まれていると登録できない" do
+        @user.name = 'ﾐｷ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Name is invalid')
+      end
+      it "family_name_kanaはカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない" do
+        @user.family_name_kana = 'かのう'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Family name kana is invalid')
+      end
+      it "name_kanaはカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない" do
+        @user.name_kana = 'みき'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Name kana is invalid')
+      end
     end
   end
 end
