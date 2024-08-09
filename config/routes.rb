@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :users, only: [:new]
   resources :tweets, only: [:new, :create]
+  resources :items, only: [:new, :create, :index]
+
+
+
 end
