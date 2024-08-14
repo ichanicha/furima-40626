@@ -1,6 +1,11 @@
 class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :find_message
+
+  def find_message
+    @item = Item.find(params[:id])
+  end
 
   def index
     @items = Item.all
@@ -21,18 +26,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
     unless @item.user == current_user
       redirect_to root_path
     end
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
