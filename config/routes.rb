@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :tweets, only: [:new, :create]
   resources :items, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 
-
-
-
+  resources :items do
+    resources :buys, only: [:index, :create] 
+  end
 end
