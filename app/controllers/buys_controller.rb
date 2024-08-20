@@ -2,10 +2,6 @@ class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :find_message, only: [:index, :create]
 
-  def find_message
-    @item = Item.find(params[:id])
-  end
-
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @buyaddress = BuyAddress.new
@@ -30,6 +26,10 @@ class BuysController < ApplicationController
   end
 
   private
+
+  def find_message
+    @item = Item.find(params[:item_id])
+  end
 
   def buy_params
     params.require(:buy_address).permit(:postal_code, :prefecture_id, :city, :house_number, :other, :tel).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
