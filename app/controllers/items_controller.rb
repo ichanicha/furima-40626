@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :find_message, only: [:show, :edit, :update, :destroy]
 
   def find_message
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   def index
