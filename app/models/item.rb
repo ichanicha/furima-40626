@@ -3,8 +3,8 @@ class Item < ApplicationRecord
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 
   belongs_to :user 
+  has_one :buy
   has_one_attached :image
-  #has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

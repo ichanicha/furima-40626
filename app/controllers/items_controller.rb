@@ -3,9 +3,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_message, only: [:show, :edit, :update, :destroy]
 
-  def find_message
-    @item = Item.find(params[:id])
-  end
 
   def index
     @items = Item.all
@@ -32,6 +29,9 @@ class ItemsController < ApplicationController
     unless @item.user == current_user
       redirect_to root_path
     end
+    if current_user == @item.user && @item.buy.present?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -51,6 +51,11 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def find_message
+    @item = Item.find(params[:id])
+  end
+  
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shopping_charge_id, :prefecture_id, :daily_id, :price).merge(user_id: current_user.id)
   end
