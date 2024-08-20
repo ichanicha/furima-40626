@@ -1,9 +1,13 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :find_message, only: [:index, :create]
+
+  def find_message
+    @item = Item.find(params[:id])
+  end
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
     @buyaddress = BuyAddress.new
     if current_user == @item.user
       redirect_to root_path
@@ -14,7 +18,6 @@ class BuysController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @buyaddress = BuyAddress.new(buy_params)
     if @buyaddress.valid?
       pay_item

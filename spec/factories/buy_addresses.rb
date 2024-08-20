@@ -7,7 +7,5 @@ FactoryBot.define do
     house_number { Faker::Lorem.sentence }
     other { Faker::Lorem.sentence }
     tel { '09012345678' }
-    user_id { 1 } 
-    item_id { 1 } 
   end
 end
