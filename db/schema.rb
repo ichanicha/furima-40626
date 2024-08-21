@@ -52,18 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_060538) do
     t.index ["buy_id"], name: "index_addresses_on_buy_id"
   end
 
-  create_table "articles", charset: "utf8", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "text", null: false
-    t.integer "category_id", null: false
-    t.integer "condition_id", null: false
-    t.integer "shipping_charge_id", null: false
-    t.integer "prefecture_id", null: false
-    t.integer "daily_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "buyaddresses", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
